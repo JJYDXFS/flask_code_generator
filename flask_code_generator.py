@@ -12,7 +12,7 @@ def choice_menu():
     print("2. get demo")
     print("3. post demo",end="\t\t\t")
     print("4. render demo")
-    print("5. mysql damo (pymysql)",end="\t\t")
+    print("5. mysql demo (pymysql)",end="\t\t")
     print("6. 退出 EXIT")
 
 def flask_template():
