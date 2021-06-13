@@ -22,8 +22,28 @@
 
 \- render demo | 渲染页面模板，附带一个重定向demo
 
-\- mysql damo (pymysql) | 基于pymysql库，支持 MySQL 5.7 和 8.0
+\- mysql damo (pymysql) | 基于pymysql库，参考[PyMySQL’s documentation](https://pymysql.readthedocs.io/en/latest/index.html)
 
 ## 运行示例
 
 ![2021-06-09_113448](https://jjydxfs.oss-cn-beijing.aliyuncs.com/md/2021-06-09_113448.jpg)
+
+---
+
+## MySQLDB
+为 pymysql 的查询封装了一个 MySQLDB 类，便于重复使用   
+```python
+import pymysql
+from MySQLDB import MySQLDB
+# 使用时先新建一个实例
+db_mysql = MySQLDB(host='localhost',
+                user='root',
+                password='password',
+                database='mysql')
+# 定义sql查询语句
+sql1="""set @var = 1;"""
+sql2="""select * from user;"""
+# 向 MySQLDB 实例的.query()方法传递要执行的sql语句列表
+# 将以字典形式返回 顺序执行后列表中sql语句 的查询结果
+print(db_mysql.query([sql1,sql2]))
+```

@@ -1,7 +1,6 @@
 """
 Flask 常用代码 生成器
 """
-
 def choice_menu():
     """
     选项菜单页
@@ -85,29 +84,21 @@ def mysql_damo():
     '''
     pymysql操纵MySQL demo
     '''
-    flag=input("MySQL 5.7(a) or MySQL 8.0(b) or neither(c)?:")
-    if flag == 'a':
-        connect_template="""
-db = pymysql.connect(host='主机ip', user='用户名', password='密码', database='数据库名')\n
+    connect_template="""
+db = pymysql.connect(host='主机ip', 
+                    user='用户名',
+                    password='密码',
+                    database='数据库名',
+                    cursorclass=pymysql.cursors.DictCursor)
 """
-    elif flag == 'b':
-        connect_template="""
-db = pymysql.connect("主机ip","用户名","密码","数据库名" )\n
-"""
-    elif flag == 'c':
-        print('无对应demo！')
-        return
-    else:
-        print('输入有误！')
-        return
-    
+
     mysql_template=connect_template+"""
 cursor = db.cursor()    # 创建一个游标对象
 
 sql=\"\"\"要执行的SQL语句;\"\"\"
 
 cursor.execute(sql) # 执行语句
-data=cursor.fetchall()  # 获取元组形式查询结果 .fatchone()方法获取单条数据
+data=cursor.fetchall()  # 获取字典形式查询结果 .fatchone()方法获取单条数据
 db.close() # 关闭连接
 """
     print(mysql_template)
